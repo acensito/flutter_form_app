@@ -1,19 +1,41 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:form_app/presentation/blocs/counter_cubit/counter_cubit.dart';
 
 class CubitCounterScreen extends StatelessWidget {
   const CubitCounterScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (_) => CounterCubit(),
+      child: _CubitCounterView(),
+    );
+  }
+}
+
+class _CubitCounterView extends StatelessWidget {
+  const _CubitCounterView();
+
+  @override
+  Widget build(BuildContext context) {
+
+    final counterState = context.watch<CounterCubit>().state;
+
     return Scaffold(
       appBar: AppBar(
-        title: Text('Cubit counter'),
+        title: Text('Cubit counter: ${counterState.transactionCount}'),
         actions: [
-          IconButton(onPressed: () => {}, icon: Icon(Icons.refresh_outlined))
+          IconButton(onPressed: () => {}, icon: Icon(Icons.refresh_outlined)),
         ],
       ),
       body: Center(
-        child: const Text('Counter value: XXXXX'),
+        child: BlocBuilder<CounterCubit, CounterState>(
+          // buildWhen: (previous, current) => current.counter != previous.counter,
+          builder: (context, state) {
+            return Text('Counter value: ${state.counter}');
+          },
+        ),
       ),
       floatingActionButton: Column(
         mainAxisAlignment: MainAxisAlignment.end,
@@ -21,17 +43,20 @@ class CubitCounterScreen extends StatelessWidget {
           FloatingActionButton(
             heroTag: '1', //indicamos boton por defecto entre scaffolds
             child: Text('+3'),
-            onPressed: () => {}),
-            const SizedBox(height: 15),
+            onPressed: () => {},
+          ),
+          const SizedBox(height: 15),
           FloatingActionButton(
-            heroTag: '1', //indicamos boton por defecto entre scaffolds
+            heroTag: '2', //indicamos boton por defecto entre scaffolds
             child: Text('+2'),
-            onPressed: () => {}),
-            const SizedBox(height: 15),
+            onPressed: () => {},
+          ),
+          const SizedBox(height: 15),
           FloatingActionButton(
-            heroTag: '1', //indicamos boton por defecto entre scaffolds
+            heroTag: '3', //indicamos boton por defecto entre scaffolds
             child: Text('+1'),
-            onPressed: () => {}),
+            onPressed: () => {},
+          ),
         ],
       ),
     );
