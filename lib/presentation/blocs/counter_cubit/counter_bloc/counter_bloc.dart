@@ -8,6 +8,7 @@ class CounterBloc extends Bloc<CounterEvent, CounterState> {
   CounterBloc() : super(CounterState()) {
 
     on<CounterIncreased>( _onCounterIncreased );
+    on<CounterReset>( _onCounterReset );
 
   }
 
@@ -15,6 +16,12 @@ class CounterBloc extends Bloc<CounterEvent, CounterState> {
     emit (state.copyWith(
       counter: state.counter + event.value,
       transactionCount: state.transactionCount + 1
+    ));
+  }
+
+  void _onCounterReset(CounterReset event, Emitter<CounterState> emit) {
+    emit (state.copyWith(
+      counter: 0
     ));
   }
 }

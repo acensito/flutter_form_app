@@ -20,5 +20,3 @@ class CounterState extends Equatable {
   @override
   List<Object> get props => [counter, transactionCount];
 }
-
-// final class CounterInitial extends CounterState {}
