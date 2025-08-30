@@ -24,4 +24,12 @@ class CounterBloc extends Bloc<CounterEvent, CounterState> {
       counter: 0
     ));
   }
+  //añadido de la forma mejorada
+  void increaseBy([int value = 1]) {
+    add(CounterIncreased(value: value));
+  }
+
+  void resetCounter() {
+    add(CounterReset());
+  }
 }
