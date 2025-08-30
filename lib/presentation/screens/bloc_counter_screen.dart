@@ -7,7 +7,7 @@ class BlocCounterScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Cubit counter'),
+        title: Text('BLoC counter'),
         actions: [
           IconButton(onPressed: () => {}, icon: Icon(Icons.refresh_outlined))
         ],
@@ -24,12 +24,12 @@ class BlocCounterScreen extends StatelessWidget {
             onPressed: () => {}),
             const SizedBox(height: 15),
           FloatingActionButton(
-            heroTag: '1', //indicamos boton por defecto entre scaffolds
+            heroTag: '2', //indicamos boton por defecto entre scaffolds
             child: Text('+2'),
             onPressed: () => {}),
             const SizedBox(height: 15),
           FloatingActionButton(
-            heroTag: '1', //indicamos boton por defecto entre scaffolds
+            heroTag: '3', //indicamos boton por defecto entre scaffolds
             child: Text('+1'),
             onPressed: () => {}),
         ],
